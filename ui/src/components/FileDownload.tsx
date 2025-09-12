@@ -47,8 +47,10 @@ const FileDownload = () => {
     });
 
     const disposition = response.headers['content-disposition'];
-    const match = disposition?.match(/filename="?(.+)"?/);
+//     const match = disposition?.match(/filename="?(.+)"?/);
+    const match = disposition?.match(/filename\*?=(?:UTF-8'')?"?([^\";]+)"?/i);
     const fileName = match ? match[1] : `downloaded_file_${Date.now()}`;
+
 
     const fileSize = response.data.size;
     const fileType = response.data.type;

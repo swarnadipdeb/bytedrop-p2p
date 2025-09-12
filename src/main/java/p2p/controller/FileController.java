@@ -297,7 +297,7 @@ public class FileController {
                     }
 
                     
-                    headers.add("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+                    headers.add("Content-Disposition", "attachment; filename=\"" + new File(filename).getName() + "\"");
                     headers.add("Content-Type", contentType);
                     
                     exchange.sendResponseHeaders(200, tempFile.length());
