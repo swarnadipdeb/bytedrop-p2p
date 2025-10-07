@@ -39,7 +39,6 @@ public class FileController {
         server.createContext("/upload", new UploadHandler());
         server.createContext("/download", new DownloadHandler());
         server.createContext("/", new CORSHandler());
-        server.createContext("/health", new HealthCheck());
         
         server.setExecutor(executorService);
     }
@@ -53,17 +52,6 @@ public class FileController {
         server.stop(0);
         executorService.shutdown();
         System.out.println("API server stopped");
-    }
-
-    private class HealthCheck implements HttpHandler {
-        @Override
-       public void handle(HttpExchange exchange) throws IOException {
-        String response = "Server Running";
-        exchange.sendResponseHeaders(200, response.getBytes().length);
-        try (OutputStream os = exchange.getResponseBody()) {
-            os.write(response.getBytes());
-        }
-      }
     }
     
     private class CORSHandler implements HttpHandler {
