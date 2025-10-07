@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 async function resolveBackendHost() {
   try {
     // Try localhost first
-    const res = await fetch('http://localhost:8080/actuator/health', { timeout: 500 })
+    const res = await fetch('http://localhost:8080/health', { timeout: 500 })
     if (res.ok) return 'http://localhost:8080'
   } catch (e) {
     console.log('localhost:8080 not reachable, trying host.docker.internal...')
